@@ -9,6 +9,28 @@ import { CheckCircle, Download, FileArchive, Folder, AlertCircle } from 'lucide-
 function App() {
   const [currentStep, setCurrentStep] = useState(0);
 
+  const handleDownload = async () => {
+    try {
+      const response = await fetch('/spring-boot-batch-project-complete.zip');
+      if (!response.ok) {
+        throw new Error('Download failed');
+      }
+      
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'spring-boot-batch-project-complete.zip';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Download failed:', error);
+      alert('Download failed. Please try again or contact support.');
+    }
+  };
+
   const steps = [
     {
       title: "Download the Complete Project",
@@ -114,14 +136,13 @@ function App() {
                   <li>• <strong>Application configuration</strong> - application.yml with H2 database setup</li>
                 </ul>
               </div>
-              <a
-                href="/spring-boot-batch-project-complete.zip"
-                download="spring-boot-batch-project-complete.zip"
+              <Button
+                onClick={handleDownload}
                 className="inline-flex items-center px-6 py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition-colors"
               >
                 <Download className="w-5 h-5 mr-2" />
                 Download Complete Project ZIP
-              </a>
+              </Button>
             </div>
           </CardContent>
         </Card>
