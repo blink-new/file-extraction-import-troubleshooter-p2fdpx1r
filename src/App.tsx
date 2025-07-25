@@ -11,13 +11,24 @@ function App() {
 
   const steps = [
     {
+      title: "Download the Complete Project",
+      description: "Download the properly structured Spring Boot project with all necessary files",
+      icon: <Download className="w-5 h-5" />,
+      details: [
+        "Click the download button below to get the complete project",
+        "The ZIP contains all necessary files: pom.xml, .project, .classpath",
+        "All your original Java source code is included",
+        "Project is pre-configured for STS/Eclipse import"
+      ]
+    },
+    {
       title: "Extract the ZIP file",
-      description: "First, extract your spring-batch-bulk-upload.zip to a folder on your computer",
+      description: "Extract the downloaded spring-boot-batch-project-complete.zip",
       icon: <FileArchive className="w-5 h-5" />,
       details: [
-        "Right-click on spring-batch-bulk-upload.zip",
+        "Right-click on spring-boot-batch-project-complete.zip",
         "Select 'Extract All...' or 'Extract Here'",
-        "Choose a location like C:\\workspace\\spring-batch-bulk-upload",
+        "Choose a location like C:\\workspace\\spring-boot-batch-project",
         "Make sure all files are extracted properly"
       ]
     },
@@ -34,27 +45,16 @@ function App() {
     {
       title: "Import the Project",
       description: "Import the extracted Spring Boot project into STS",
-      icon: <Download className="w-5 h-5" />,
+      icon: <CheckCircle className="w-5 h-5" />,
       details: [
         "Go to File → Import...",
         "Expand 'General' and select 'Existing Projects into Workspace'",
         "Click 'Next'",
         "Click 'Browse...' next to 'Select root directory'",
-        "Navigate to where you extracted the ZIP file",
-        "Select the spring-batch-bulk-upload folder",
+        "Navigate to the extracted spring-boot-batch-project folder",
+        "Select the project folder (should show spring-batch-bulk-upload)",
         "Make sure the project appears in the Projects list with a checkbox",
         "Click 'Finish'"
-      ]
-    },
-    {
-      title: "Wait for Project Setup",
-      description: "Let STS configure the project automatically",
-      icon: <CheckCircle className="w-5 h-5" />,
-      details: [
-        "STS will automatically detect it's a Maven/Gradle project",
-        "Dependencies will be downloaded automatically",
-        "Wait for the progress bar in the bottom-right to complete",
-        "The project should appear in your Project Explorer"
       ]
     }
   ];
@@ -62,19 +62,19 @@ function App() {
   const troubleshootingTips = [
     {
       issue: "Project doesn't appear in import dialog",
-      solution: "Make sure you extracted the ZIP completely and are selecting the root folder containing pom.xml or build.gradle"
+      solution: "Make sure you extracted the ZIP completely and are selecting the spring-boot-batch-project folder that contains pom.xml"
     },
     {
       issue: "Import fails with errors",
-      solution: "Check that you have Java 8+ installed and configured in STS (Window → Preferences → Java → Installed JREs)"
+      solution: "Check that you have Java 17+ installed and configured in STS (Window → Preferences → Java → Installed JREs)"
     },
     {
       issue: "Dependencies not downloading",
-      solution: "Check your internet connection and Maven/Gradle settings (Window → Preferences → Maven or Gradle)"
+      solution: "Check your internet connection and Maven settings (Window → Preferences → Maven). Right-click project → Maven → Reload Projects"
     },
     {
       issue: "Project shows errors after import",
-      solution: "Right-click project → Maven → Reload Projects or Gradle → Refresh Gradle Project"
+      solution: "Right-click project → Maven → Reload Projects or clean and rebuild the project"
     }
   ];
 
@@ -84,30 +84,67 @@ function App() {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-slate-900 mb-2">
-            Import Spring Boot Project into STS
+            Spring Boot Project - Ready for STS Import
           </h1>
           <p className="text-slate-600">
-            Step-by-step guide to import your spring-batch-bulk-upload.zip into Spring Tool Suite
+            Complete Spring Boot project with all necessary files for seamless STS import
           </p>
         </div>
+
+        {/* Download Section */}
+        <Card className="mb-8 border-green-200 bg-green-50">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-green-800">
+              <CheckCircle className="w-5 h-5" />
+              ✅ Project Ready for Download
+            </CardTitle>
+            <CardDescription className="text-green-700">
+              I've created a complete Spring Boot project with all the necessary files for seamless STS import
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <div className="text-green-700">
+                <p className="mb-2"><strong>What's included:</strong></p>
+                <ul className="space-y-1 ml-4">
+                  <li>• <strong>pom.xml</strong> - Complete Maven configuration with all dependencies</li>
+                  <li>• <strong>.project & .classpath</strong> - Eclipse/STS project files</li>
+                  <li>• <strong>All source code</strong> - Your original Java classes and batch configuration</li>
+                  <li>• <strong>Test files</strong> - Basic test structure</li>
+                  <li>• <strong>Application configuration</strong> - application.yml with H2 database setup</li>
+                </ul>
+              </div>
+              <a
+                href="/spring-boot-batch-project-complete.zip"
+                download="spring-boot-batch-project-complete.zip"
+                className="inline-flex items-center px-6 py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition-colors"
+              >
+                <Download className="w-5 h-5 mr-2" />
+                Download Complete Project ZIP
+              </a>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* File Info */}
         <Card className="mb-8">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <FileArchive className="w-5 h-5 text-blue-600" />
-              Your File: spring-batch-bulk-upload.zip
+              Project Details: spring-batch-bulk-upload
             </CardTitle>
             <CardDescription>
-              This appears to be a Spring Boot project with batch processing capabilities
+              Spring Boot application with batch processing capabilities for bulk data upload
             </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex flex-wrap gap-2">
-              <Badge variant="secondary">Spring Boot</Badge>
+              <Badge variant="secondary">Spring Boot 3.2.0</Badge>
               <Badge variant="secondary">Maven Project</Badge>
-              <Badge variant="secondary">Batch Processing</Badge>
-              <Badge variant="secondary">Java</Badge>
+              <Badge variant="secondary">Spring Batch</Badge>
+              <Badge variant="secondary">Java 17</Badge>
+              <Badge variant="secondary">H2 Database</Badge>
+              <Badge variant="secondary">JPA</Badge>
             </div>
           </CardContent>
         </Card>
@@ -195,7 +232,7 @@ function App() {
 
         {/* Footer */}
         <div className="text-center mt-8 text-slate-500">
-          <p>Need more help? Check STS documentation or Spring Boot guides online.</p>
+          <p>After import, you can run the application by right-clicking BulkuploadApplication.java → Run As → Java Application</p>
         </div>
       </div>
     </div>
