@@ -9,26 +9,15 @@ import { CheckCircle, Download, FileArchive, Folder, AlertCircle } from 'lucide-
 function App() {
   const [currentStep, setCurrentStep] = useState(0);
 
-  const handleDownload = async () => {
-    try {
-      const response = await fetch('/spring-boot-batch-project-complete.zip');
-      if (!response.ok) {
-        throw new Error('Download failed');
-      }
-      
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = 'spring-boot-batch-project-complete.zip';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error('Download failed:', error);
-      alert('Download failed. Please try again or contact support.');
-    }
+  const handleDownload = () => {
+    // Simple direct download approach
+    const link = document.createElement('a');
+    link.href = '/spring-boot-batch-project-complete.zip';
+    link.download = 'spring-boot-batch-project-complete.zip';
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const steps = [
