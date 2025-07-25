@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: 221 83% 53%;
+  --accent: 43 96% 56%;
+  --background: 210 40% 98%;
+  --dark-mode: 222 84% 5%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+
+    font-family: Inter, system-ui, -apple-system, sans-serif;
+  }
+}
